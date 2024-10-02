@@ -1,0 +1,59 @@
+.add-recipe-form {
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: #f7f7f7;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-group {
+	margin-bottom: 20px;
+  }
+  
+  .form-group label {
+	font-weight: bold;
+	display: block;
+	margin-bottom: 5px;
+  }
+  
+  .form-group input {
+	width: 90%;
+	padding: 10px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+  }
+  
+  .addrecipe__ingredient-list, .addrecipe__step-list, .addrecipe__tag-list {
+	margin-top: 10px;
+  }
+  
+  .addrecipe__ingredient-item, .addrecipe__step-item, .addrecipe__tag-item {
+	background-color: #fff;
+	padding: 10px;
+	margin-bottom: 5px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	text-align: left;
+  }
+
+  .addrecipe__ingredient-item button, .addrecipe__step-item button, .addrecipe__tag-item button {
+	background-color: #ff5f5f;
+	color: white;
+	border: none;
+	border-radius: 50%;
+	cursor: pointer;
+  }
+  
+  .addrecipe__submit-btn {
+	width: 100%;
+	padding: 10px;
+	background-color: #4caf50;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+  }
