@@ -55,31 +55,13 @@ function EditRecipe () {
         });
     };
 
-	const handleIngredientChange = (index, e) => {
-        const updatedIngredients = formData.ingredients.map((ingredient, i) => 
-			i === index ? e.target.value : ingredient
-		);
+	const handleItemChange = (type, index, e) => {
+        const updatedItem = formData[type].map((j, i) => i === index ? e.target.value : j);
         setFormData({
             ...formData,
-            ingredients: updatedIngredients
+            [type]: updatedItem
         });
-    };
-
-	const handleStepChange = (index, e) => {
-        const updatedSteps = formData.steps.map((step, i) => i === index ? e.target.value : step);
-        setFormData({
-            ...formData,
-            steps: updatedSteps
-        });
-    };
-
-	const handleTagChange = (index, e) => {
-        const updatedTags = formData.tags.map((tag, i) => i === index ? e.target.value : tag);
-        setFormData({
-            ...formData,
-            tags: updatedTags
-        });
-    };
+	};
 
 	const handleAddItem = (type) => {
 		setFormData({
@@ -166,7 +148,7 @@ function EditRecipe () {
 							<input
 								type="text"
 								value={tag}
-								onChange={(e) => handleTagChange(index, e)}
+								onChange={(e) => handleItemChange("tags", index, e)}
 							/>
 							<button type="button" onClick={() => handleRemoveItem("tags", index)}>x</button>
 						</div>
@@ -192,7 +174,7 @@ function EditRecipe () {
 							<input
 								type="text"
 								value={ingredient}
-								onChange={(e) => handleIngredientChange(index, e)}
+								onChange={(e) => handleItemChange("ingredients", index, e)}
 								required
 							/>
 							<button type="button" onClick={() => handleRemoveItem("ingredients", index)}>x</button>
@@ -210,7 +192,7 @@ function EditRecipe () {
 						<input
 							type="text"
 							value={step}
-							onChange={(e) => handleStepChange(index, e)}
+							onChange={(e) => handleItemChange("steps", index, e)}
 							required
 						/>
 						<button type="button" onClick={() => handleRemoveItem("steps", index)}>x</button>
