@@ -34,59 +34,23 @@ function AddRecipe() {
         });
     };
 
-	const handleIngredientKeyPress = (e) => {
-        if (e.key === 'Enter' && ingredients.trim()) {
+	const handleKeyPress = (type, value, setValue) => (e) => {
+        if (e.key === 'Enter' && value.trim()) {
             e.preventDefault();
             setFormData({
                 ...formData,
-                ingredients: [...formData.ingredients, ingredients]
+                [type]: [...formData[type], value]
             });
-            setIngredients('');
+            setValue('');
         }
     };
 
-    const handleStepKeyPress = (e) => {
-        if (e.key === 'Enter' && step.trim()) {
-            e.preventDefault();
-            setFormData({
-                ...formData,
-                steps: [...formData.steps, step]
-            });
-            setStep('');
-        }
-    };
-
-	const handleTagKeyPress = (e) => {
-		if (e.key === 'Enter' && tag.trim) {
-			e.preventDefault();
-            setFormData({
-                ...formData,
-                tags: [...formData.tags, tag]
-            });
-            setTag('');
-		}
-	};
-
-	const removeIngredient = (index) => {
+	const handleRemoveItem = (type, index) => {
         setFormData({
             ...formData,
-            ingredients: formData.ingredients.filter((_, i) => i !== index)
+            [type]: formData[type].filter((_, i) => i !== index)
         });
     };
-
-    const removeStep = (index) => {
-        setFormData({
-            ...formData,
-            steps: formData.steps.filter((_, i) => i !== index)
-        });
-    };
-	
-	const removeTag = (index) => {
-		setFormData({
-            ...formData,
-            tags: formData.tags.filter((_, i) => i !== index)
-        });
-	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -151,13 +115,13 @@ function AddRecipe() {
                     type="text"
                     value={tag}
                     onChange={(e) => setTag(e.target.value)}
-                    onKeyPress={handleTagKeyPress}
+                    onKeyPress={handleKeyPress('tags', tag, setTag)}
                     placeholder="Ajouter un tag et appuyer sur Entrée"
                 />
                 <div className="addrecipe__tag-list">
                     {formData.tags.map((tagg, index) => (
                         <li key={index} className="addrecipe__tag-item">
-                            {tagg} <button type="button" onClick={() => removeTag(index)}>x</button>
+                            {tagg} <button type="button" onClick={() => handleRemoveItem("tags", index)}>x</button>
                         </li>
                     ))}
                 </div>
@@ -177,13 +141,13 @@ function AddRecipe() {
                     type="text"
                     value={ingredients}
                     onChange={(e) => setIngredients(e.target.value)}
-                    onKeyPress={handleIngredientKeyPress}
+                    onKeyPress={handleKeyPress('ingredients', ingredients, setIngredients)}
                     placeholder="Ajouter un ingrédient et appuyer sur Entrée"
                 />
                 <div className="addrecipe__ingredient-list">
                     {formData.ingredients.map((ing, index) => (
                         <li key={index} className="addrecipe__ingredient-item">
-                            {ing} <button type="button" onClick={() => removeIngredient(index)}>x</button>
+                            {ing} <button type="button" onClick={() => handleRemoveItem("ingredients", index)}>x</button>
                         </li>
                     ))}
                 </div>
@@ -194,13 +158,13 @@ function AddRecipe() {
                     type="text"
                     value={step}
                     onChange={(e) => setStep(e.target.value)}
-                    onKeyPress={handleStepKeyPress}
+                    onKeyPress={handleKeyPress('steps', step, setStep)}
                     placeholder="Ajouter une étape et appuyer sur Entrée"
                 />
                 <div className="addrecipe__step-list">
                     {formData.steps.map((step, index) => (
                         <li key={index} className="addrecipe__step-item">
-                            {step} <button type="button" onClick={() => removeStep(index)}>x</button>
+                            {step} <button type="button" onClick={() => handleRemoveItem("steps", index)}>x</button>
                         </li>
                     ))}
                 </div>
