@@ -65,38 +65,8 @@ function EditRecipe () {
         });
     };
 
-	const addIngredient = () => {
-        setFormData({
-            ...formData,
-            ingredients: [...formData.ingredients, '']
-        });
-    };
-
-    const removeIngredient = (index) => {
-        const updatedIngredients = formData.ingredients.filter((_, i) => i !== index);
-        setFormData({
-            ...formData,
-            ingredients: updatedIngredients
-        });
-    };
-
 	const handleStepChange = (index, e) => {
         const updatedSteps = formData.steps.map((step, i) => i === index ? e.target.value : step);
-        setFormData({
-            ...formData,
-            steps: updatedSteps
-        });
-    };
-
-    const addStep = () => {
-        setFormData({
-            ...formData,
-            steps: [...formData.steps, '']
-        });
-    };
-
-    const removeStep = (index) => {
-        const updatedSteps = formData.steps.filter((_, i) => i !== index);
         setFormData({
             ...formData,
             steps: updatedSteps
@@ -111,18 +81,18 @@ function EditRecipe () {
         });
     };
 
-    const addTag = () => {
-        setFormData({
+	const handleAddItem = (type) => {
+		setFormData({
             ...formData,
-            tags: [...formData.tags, '']
+            [type]: [...formData[type], '']
         });
     };
 
-    const removeTag = (index) => {
-        const updatedTags = formData.tags.filter((_, i) => i !== index);
+	const handleRemoveItem = (type, index) => {
+        const updatedItems = formData[type].filter((_, i) => i !== index);
         setFormData({
             ...formData,
-            tags: updatedTags
+            [type]: updatedItems
         });
     };
 
@@ -198,12 +168,12 @@ function EditRecipe () {
 								value={tag}
 								onChange={(e) => handleTagChange(index, e)}
 							/>
-							<button type="button" onClick={() => removeTag(index)}>x</button>
+							<button type="button" onClick={() => handleRemoveItem("tags", index)}>x</button>
 						</div>
 					))}
 				</div>
 			</div>
-			<button type="button" onClick={addTag} className="edit-recipe__add-button">Ajouter un Tag</button>
+			<button type="button" onClick={() => handleAddItem("tags")} className="edit-recipe__add-button">Ajouter un Tag</button>
 			<div className="form-group">
 	 			<label>Nombre de parts</label>
 	 			<input
@@ -225,12 +195,12 @@ function EditRecipe () {
 								onChange={(e) => handleIngredientChange(index, e)}
 								required
 							/>
-							<button type="button" onClick={() => removeIngredient(index)}>x</button>
+							<button type="button" onClick={() => handleRemoveItem("ingredients", index)}>x</button>
 						</div>
 					))}
 				</div>
 			</div>
-			<button type="button" onClick={addIngredient} className="edit-recipe__add-button">Ajouter un ingrédient</button>
+			<button type="button" onClick={() => handleAddItem("ingredients")} className="edit-recipe__add-button">Ajouter un ingrédient</button>
 
 			<div className="form-group">
                 <label>Étapes</label>
@@ -243,12 +213,12 @@ function EditRecipe () {
 							onChange={(e) => handleStepChange(index, e)}
 							required
 						/>
-						<button type="button" onClick={() => removeStep(index)}>x</button>
+						<button type="button" onClick={() => handleRemoveItem("steps", index)}>x</button>
 					</div>
 				))}
 				</div>
 			</div>
-			<button type="button" onClick={addStep} className="edit-recipe__add-button">Ajouter une étape</button>
+			<button type="button" onClick={() => handleAddItem("steps")} className="edit-recipe__add-button">Ajouter une étape</button>
 
 			<button type="submit" className="submit-btn">Update Recipe</button>
 		</form>
