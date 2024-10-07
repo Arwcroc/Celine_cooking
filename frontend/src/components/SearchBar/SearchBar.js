@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function SearchBar({ onSearch }) {
-    const [query, setQuery] = useState('');
+	const [query, setQuery] = useState("");
 
-    const handleInputChange = (e) => {
-        const value = e.target.value;
-        setQuery(value);
-        onSearch(value);
-    };
+	const handleInputChange = (e) => {
+		const value = e.target.value;
+		setQuery(value);
+		onSearch(value);
+	};
 
-    return (
-        <input
-            type="text"
-            placeholder="Rechercher des recettes..."
-            value={query}
-            onChange={handleInputChange}
+	return (
+		<input
+			type="text"
+			placeholder="Rechercher des recettes..."
+			value={query}
+			onChange={handleInputChange}
 			className="search-bar"
-        />
-    );
+		/>
+	);
 }
 
 export default SearchBar;

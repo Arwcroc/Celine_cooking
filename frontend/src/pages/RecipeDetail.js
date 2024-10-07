@@ -1,47 +1,53 @@
-import React from "react"
-import { useEffect, useState } from "react"
-import { useParams, useNavigate } from "react-router-dom"
-import axios from "axios"
-import logo from '../assets/images/Sans titre 2.jpeg';
-import './RecipeDetail.css';
+import React from "react";
+import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
+import logo from "../assets/images/Sans titre 2.jpeg";
+import "./RecipeDetail.css";
 
 function RecipeDetail() {
-    const { id } = useParams();
+	const { id } = useParams();
 	const navigate = useNavigate();
-    const [recipe, setRecipe] = useState(null);
-    const [servings, setServings] = useState(1);
+	const [recipe, setRecipe] = useState(null);
+	const [servings, setServings] = useState(1);
 
 	useEffect(() => {
-        const fetchRecipe = async () => {
-            try {
-                const response = await axios.get(`http://localhost:5001/api/recipes/${id}`);
-                setRecipe(response.data);
-                setServings(response.data.servings);
-            } catch (error) {
-                console.error("Error fetching the recipe:", error);
-            }
-        };
+		const fetchRecipe = async () => {
+			try {
+				const response = await axios.get(
+					`http://localhost:5001/api/recipes/${id}`
+				);
+				setRecipe(response.data);
+				setServings(response.data.servings);
+			} catch (error) {
+				console.error("Error fetching the recipe:", error);
+			}
+		};
 
-        fetchRecipe();
-    }, [id]);
+		fetchRecipe();
+	}, [id]);
 
 	const handleDelete = async () => {
-		const confirmDelete = window.confirm('Are you sure you want to delete this recipe?');
+		const confirmDelete = window.confirm(
+			"Are you sure you want to delete this recipe?"
+		);
 		if (confirmDelete) {
 			try {
-				await axios.delete(`http://localhost:5001/api/recipes/${recipe.id}`);
-				alert('Recipe deleted successfully');
-				navigate('/');
+				await axios.delete(
+					`http://localhost:5001/api/recipes/${recipe.id}`
+				);
+				alert("Recipe deleted successfully");
+				navigate("/");
 			} catch (error) {
-				console.error('Error deleting recipe:', error);
-				alert('Failed to delete recipe');
+				console.error("Error deleting recipe:", error);
+				alert("Failed to delete recipe");
 			}
 		}
 	};
 
 	// const handleServingsChange = (e) => {
-    //     setServings(e.target.value);
-    // };
+	//     setServings(e.target.value);
+	// };
 
 	// const calculateIngredients = (ingredient) => {
 	// 	const words = ingredient.split(' ');
@@ -54,51 +60,75 @@ function RecipeDetail() {
 	// 	}
 	// };
 
-    if (!recipe) {
-        return <div>Loading...</div>;
-    }
+	if (!recipe) {
+		return <div>Loading...</div>;
+	}
 
 	return (
 		<div className="recipe-detail">
-			<button className="btn-return" onClick={() => navigate(`/`)}>{'<<'}</button>
-            <div className="recipe-header">
-			<img src={recipe.image ? `http://localhost:5001/uploads/${recipe.image}` : logo} alt={recipe.title} className="recipe-image" />
-                <h1 className="recipe-title">{recipe.title}</h1>
-            </div>
+			<button className="btn-return" onClick={() => navigate(`/`)}>
+				{"<<"}
+			</button>
+			<div className="recipe-header">
+				<img
+					src={
+						recipe.image
+							? `http://localhost:5001/uploads/${recipe.image}`
+							: logo
+					}
+					alt={recipe.title}
+					className="recipe-image"
+				/>
+				<h1 className="recipe-title">{recipe.title}</h1>
+			</div>
 			<div className="tags">
 				{recipe.diet && (
-						<span className="recipe-detail__diet">{recipe.diet === 'vegan' ? 'Vegan' : 'Végétarien'}</span>
+					<span className="recipe-detail__diet">
+						{recipe.diet === "vegan" ? "Vegan" : "Végétarien"}
+					</span>
 				)}
-				{recipe.tags && recipe.tags.map((tag, index) => (
-					<span key={index} className="tag">{tag}</span>
-				))}
+				{recipe.tags &&
+					recipe.tags.map((tag, index) => (
+						<span key={index} className="tag">
+							{tag}
+						</span>
+					))}
 			</div>
-            <div>
-                <label>Nombre de parts : {servings}</label>
-                {/* <input type="number" value={servings} onChange={handleServingsChange} /> */}
-            </div>
+			<div>
+				<label>Nombre de parts : {servings}</label>
+				{/* <input type="number" value={servings} onChange={handleServingsChange} /> */}
+			</div>
 			<div className="recipe-body">
-                <div className="ingredients">
-                    <h2>Ingrédients</h2>
-						{recipe.ingredients && recipe.ingredients.map((ingredient, index) => (
+				<div className="ingredients">
+					<h2>Ingrédients</h2>
+					{recipe.ingredients &&
+						recipe.ingredients.map((ingredient, index) => (
 							<li key={index}>{ingredient}</li>
 						))}
-                </div>
-                <div className="steps">
-                    <h2>Étapes</h2>
-                    <ol>
-                        {recipe.steps && recipe.steps.map((step, index) => (
-                            <li key={index}>{step}</li>
-                        ))}
-                    </ol>
-                </div>
-            </div>
+				</div>
+				<div className="steps">
+					<h2>Étapes</h2>
+					<ol>
+						{recipe.steps &&
+							recipe.steps.map((step, index) => (
+								<li key={index}>{step}</li>
+							))}
+					</ol>
+				</div>
+			</div>
 			<div className="recipe-actions">
-                <button className="btn-edit" onClick={() => navigate(`/edit-recipe/${recipe.id}`)}>Edit</button>
-                <button className="btn-delete" onClick={handleDelete}>Delete</button>
-            </div>
-        </div>
-    );
+				<button
+					className="btn-edit"
+					onClick={() => navigate(`/edit-recipe/${recipe.id}`)}
+				>
+					Edit
+				</button>
+				<button className="btn-delete" onClick={handleDelete}>
+					Delete
+				</button>
+			</div>
+		</div>
+	);
 }
 
 export default RecipeDetail;

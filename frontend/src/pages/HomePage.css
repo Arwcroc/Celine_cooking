@@ -1,10 +1,10 @@
 .homepage {
 	padding: 20px;
-  }
-  
-  .recipe-list {
+}
+
+.recipe-list {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 20px;
 	justify-content: center;
-  }
+}

@@ -3,37 +3,37 @@
 	align-items: center;
 	justify-content: space-between;
 	padding: 10px 20px;
-	background-color: #D5DDD5;
+	background-color: #d5ddd5;
 	color: white;
-  }
-  
-  .header__logo-image {
+}
+
+.header__logo-image {
 	height: 60px;
 	width: auto;
-  }
-  
-  .header__nav ul {
+}
+
+.header__nav ul {
 	list-style-type: none;
 	display: flex;
 	gap: 20px;
 	margin: 0;
 	padding: 0;
-  }
-  
-  .header__nav a {
+}
+
+.header__nav a {
 	color: rgb(0, 0, 0);
 	text-decoration: none;
 	font-size: 14px;
-  }
-  
-  .header__nav a:hover {
+}
+
+.header__nav a:hover {
 	text-decoration: underline;
-  }
-  
-  .header__search input {
+}
+
+.header__search input {
 	width: 100%;
 	padding: 5px 10px;
 	font-size: 13px;
 	border: none;
 	border-radius: 5px;
-  }
+}

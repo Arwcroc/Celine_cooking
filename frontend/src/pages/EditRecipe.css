@@ -5,64 +5,70 @@
 	background-color: #f7f7f7;
 	border-radius: 10px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .form-group {
+}
+
+.form-group {
 	margin-bottom: 20px;
-  }
-  
-  .form-group label {
+}
+
+.form-group label {
 	font-weight: bold;
 	display: block;
 	margin-bottom: 5px;
 	margin-top: 10px;
-  }
-  
-  .form-group input {
+}
+
+.form-group input {
 	width: 65%;
 	padding: 10px;
 	border-radius: 5px;
 	margin-right: 10px;
 	border: 1px solid #ccc;
-  }
+}
 
-  .form-group select {
+.form-group select {
 	border-radius: 5px;
-    padding: 8px;
+	padding: 8px;
 	margin-right: 5px;
-    border: #ccc;
-  } 
-  
-  .edit-recipe__ingredient-list, .edit-recipe__step-list, .edit-recipe__tag-list {
+	border: #ccc;
+}
+
+.edit-recipe__ingredient-list,
+.edit-recipe__step-list,
+.edit-recipe__tag-list {
 	margin-top: 10px;
-  }
-  
-  .edit-recipe__ingredient-item, .edit-recipe__step-item, .edit-recipe__tag-item {
+}
+
+.edit-recipe__ingredient-item,
+.edit-recipe__step-item,
+.edit-recipe__tag-item {
 	padding: 5px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	border-radius: 5px;
-  }
+}
 
-  .edit-recipe__ingredient-item button, .edit-recipe__step-item button, .edit-recipe__tag-item button {
+.edit-recipe__ingredient-item button,
+.edit-recipe__step-item button,
+.edit-recipe__tag-item button {
 	background-color: #ff5f5f;
 	color: white;
 	border: none;
 	border-radius: 50%;
 	cursor: pointer;
-  }
+}
 
-  .edit-recipe__add-button {
+.edit-recipe__add-button {
 	padding: 8px;
-	border:#ccc;
+	border: #ccc;
 	margin-bottom: 10px;
 	margin-top: -10px;
 	cursor: pointer;
 	border-radius: 5px;
-  }
-  
-  .submit-btn {
+}
+
+.submit-btn {
 	width: 100%;
 	padding: 10px;
 	background-color: #4caf50;
@@ -70,4 +76,4 @@
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
-  }
+}
