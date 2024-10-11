@@ -4,7 +4,7 @@ import HomePage from "./pages/HomePage";
 import AddRecipePage from "./pages/AddRecipePage";
 import RecipeDetail from "./pages/RecipeDetail";
 import EditRecipe from "./pages/EditRecipe";
-// import Login from './components/LoginPage/Login';
+import LoginPage from "./components/LoginPage/Login";
 import "./App.css";
 
 function App() {
@@ -12,8 +12,8 @@ function App() {
 		<Router>
 			<div className="App">
 				<Routes>
-					{/* <Route path="/login" element={<Login />}/> */}
 					<Route path="/" element={<HomePage />} />
+					<Route path="/login" element={<LoginPage />} />
 					<Route path="/add-recipe" element={<AddRecipePage />} />
 					<Route path="/recipes/:id" element={<RecipeDetail />} />
 					<Route path="/edit-recipe/:id" element={<EditRecipe />} />

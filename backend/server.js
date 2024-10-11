@@ -4,6 +4,7 @@ const cors = require('cors');
 const multer = require('multer');
 const path = require('path');
 const recipeRoutes = require('./routes/recipeRoutes');
+const authRoutes = require('./routes/auth');
 require('dotenv').config();
 
 const app = express();
@@ -11,10 +12,10 @@ const PORT = process.env.PORT || 5001;
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'uploads/'); // Dossier où les images seront stockées
+        cb(null, 'uploads/');
     },
     filename: function (req, file, cb) {
-        cb(null, Date.now() + path.extname(file.originalname)); // Nom du fichier avec date unique
+        cb(null, Date.now() + path.extname(file.originalname));
     },
 });
 
@@ -22,10 +23,11 @@ const upload = multer({ storage: storage });
 
 app.use(cors());
 app.use(cors({
-    origin: 'http://localhost:3000', // Assure-toi que le frontend a l'accès
+    origin: 'http://localhost:3000',
 }));
 app.use(express.json());
 app.use('/api/recipes', recipeRoutes);
+app.use('/auth', authRoutes);
 app.use('/uploads', express.static('uploads'));
 
 const db = mysql.createConnection({

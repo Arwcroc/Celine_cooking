@@ -1,41 +1,61 @@
-// import React from 'react'
+import axios from "axios";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-// function Login() {
-// 	const [email, setEmail] = useState('');
-// 	const [password, setPassword] = useState('');
+const Login = () => {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [message, setMessage] = useState("");
+	const navigate = useNavigate();
 
-// 	const handleSubmit = (e) => {
-// 		e.preventDefault();
-// 		console.log("Email:", email);
-// 		console.log("Password:", password);
-// 	};
+	const handleSubmit = async (e) => {
+		e.preventDefault();
 
-// 	return (
-// 		<div>
-// 			<h2>Connexion</h2>
-// 			<form onSubmit={handleSubmit}>
-// 				<div>
-// 					<label>Email :</label>
-// 					<input
-// 						type='email'
-// 						value={email}
-// 						onChange={(e) => setEmail(e.target.value)}
-// 						required
-// 					/>
-// 				</div>
-// 				<div>
-// 					<label>Password :</label>
-// 					<input
-// 						type='password'
-// 						value={password}
-// 						onChange={(e) => setPassword(e.target.value)}
-// 						required
-// 					/>
-// 				</div>
-// 				<button type='submit'>Se connecter</button>
-// 			</form>
-// 		</div>
-// 	);
-// }
+		try {
+			await axios.post(
+				"http://localhost:5001/auth/login", {
+				username,
+            	password
+			}, {
+					headers: {
+						"Content-Type": "application/json",
+					},
+				}
+			);
+			setMessage("Login successful");
+            navigate(`/`);
+		} catch (error) {
+			console.error("Error login:", error);
+			setMessage("Invalid credentials");
+		}
+	};
 
-// export default Login;
+
+    return (
+        <div>
+            <h2>Login</h2>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label>Username:</label>
+                    <input
+                        type="text"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <label>Password:</label>
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            {message && <p>{message}</p>}
+        </div>
+    );
+};
+
+export default Login;

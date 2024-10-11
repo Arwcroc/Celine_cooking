@@ -5,7 +5,7 @@ import axios from "axios";
 import logo from "../assets/images/Sans titre 2.jpeg";
 import "./RecipeDetail.css";
 
-function RecipeDetail() {
+function RecipeDetail(isAdmin) {
 	const { id } = useParams();
 	const navigate = useNavigate();
 	const [recipe, setRecipe] = useState(null);
@@ -116,17 +116,19 @@ function RecipeDetail() {
 					</ol>
 				</div>
 			</div>
-			<div className="recipe-actions">
-				<button
-					className="btn-edit"
-					onClick={() => navigate(`/edit-recipe/${recipe.id}`)}
-				>
-					Edit
-				</button>
-				<button className="btn-delete" onClick={handleDelete}>
-					Delete
-				</button>
-			</div>
+			{isAdmin && (
+				<div className="recipe-actions">
+					<button
+						className="btn-edit"
+						onClick={() => navigate(`/edit-recipe/${recipe.id}`)}
+					>
+						Edit
+					</button>
+					<button className="btn-delete" onClick={handleDelete}>
+						Delete
+					</button>
+				</div>
+			)}
 		</div>
 	);
 }

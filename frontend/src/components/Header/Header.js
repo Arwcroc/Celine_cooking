@@ -4,7 +4,7 @@ import "./Header.css";
 import logo from "../../assets/images/Sans titre 2.jpeg";
 import SearchBar from "../SearchBar/SearchBar";
 
-function Header({ onSearch }) {
+function Header({ onSearch, isAdmin }) {
 	return (
 		<header className="header">
 			<div className="header__logo">
@@ -21,9 +21,16 @@ function Header({ onSearch }) {
 			</div>
 			<nav className="header__nav">
 				<ul>
-					<li>
-						<a href="/add-recipe">Nouvelle Recette</a>
-					</li>
+					{isAdmin && (
+						<li>
+							<a href="/add-recipe">Nouvelle Recette</a>
+						</li>
+					)}
+					{!isAdmin && (
+						<li>
+							<a href="/login">Login</a>
+						</li>
+					)}
 				</ul>
 			</nav>
 		</header>
