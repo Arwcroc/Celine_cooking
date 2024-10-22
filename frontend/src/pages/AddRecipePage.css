@@ -47,16 +47,16 @@
 .addrecipe__ingredient-item button,
 .addrecipe__step-item button,
 .addrecipe__tag-item button {
-    background: none; /* Suppression du fond */
-    border: none; /* Suppression de la bordure */
+    background: none;
+    border: none;
     cursor: pointer;
     padding: 5px;
-    margin-left: 10px; /* Espacement entre les boutons */
+    margin-left: 10px;
 }
 
 .addrecipe__button-group {
     display: flex;
-    justify-content: flex-end; /* Aligne les boutons à droite */
+    justify-content: flex-end;
 }
 
 .addrecipe__submit-btn {

@@ -56,16 +56,16 @@
 .edit-recipe__ingredient-item button,
 .edit-recipe__step-item button,
 .edit-recipe__tag-item button {
-    background: none; /* Suppression du fond */
-    border: none; /* Suppression de la bordure */
+    background: none;
+    border: none;
     cursor: pointer;
     padding: 5px;
-    margin-left: 10px; /* Espacement entre les boutons */
+    margin-left: 10px;
 }
 
 .edit-recipe__button-group {
     display: flex;
-    justify-content: flex-end; /* Aligne les boutons à droite */
+    justify-content: flex-end;
 }
 
 .edit-recipe__add-button {
