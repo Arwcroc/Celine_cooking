@@ -10,6 +10,14 @@ function RecipeDetail(isAdmin) {
 	const navigate = useNavigate();
 	const [recipe, setRecipe] = useState(null);
 	const [servings, setServings] = useState(1);
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+	useEffect(() => {
+		const token = localStorage.getItem("token");
+		if (token) {
+			setIsLoggedIn(true);
+		}
+	}, []);
 
 	useEffect(() => {
 		const fetchRecipe = async () => {
@@ -116,7 +124,7 @@ function RecipeDetail(isAdmin) {
 					</ol>
 				</div>
 			</div>
-			{isAdmin && (
+			{isLoggedIn && (
 				<div className="recipe-actions">
 					<button
 						className="btn-edit"

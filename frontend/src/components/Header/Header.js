@@ -1,10 +1,32 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./Header.css";
 import logo from "../../assets/images/Sans titre 2.jpeg";
 import SearchBar from "../SearchBar/SearchBar";
 
-function Header({ onSearch, isAdmin }) {
+function Header({ onSearch }) {
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		const token = localStorage.getItem("token");
+		if (token) {
+			setIsLoggedIn(true);
+		}
+	}, []);
+
+	const handleLogout = () => {
+		const confirmLogout = window.confirm(
+			"Are you sure you want to Logout ?"
+		);
+		if (confirmLogout) {
+			localStorage.removeItem("token");
+			setIsLoggedIn(false);
+			navigate("/");
+		}
+	};
+
 	return (
 		<header className="header">
 			<div className="header__logo">
@@ -21,12 +43,13 @@ function Header({ onSearch, isAdmin }) {
 			</div>
 			<nav className="header__nav">
 				<ul>
-					{isAdmin && (
+					{isLoggedIn && (
 						<li>
-							<a href="/add-recipe">Nouvelle Recette</a>
+							<a href="/add-recipe">Ajouter</a>
+							<button onClick={handleLogout} className="header__nav_logout">Logout</button>
 						</li>
 					)}
-					{!isAdmin && (
+					{!isLoggedIn && (
 						<li>
 							<a href="/login">Login</a>
 						</li>

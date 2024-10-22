@@ -83,6 +83,32 @@ function AddRecipe() {
 		}
 	};
 
+	const reorderArray = (array, oldIndex, newIndex) => {
+		const movedItem = array[oldIndex];
+		const remainingItems = array.filter((_, index) => index !== oldIndex);
+
+		const reorderedItems = [
+			...remainingItems.slice(0, newIndex),
+			movedItem,
+			...remainingItems.slice(newIndex),
+		];
+
+		return reorderedItems;
+	};
+
+	const changeOrder = (type, index, direction) => {
+		const items = formData[type];
+		const newIndex = direction === "UP" ? index - 1 : index + 1;
+
+		if (newIndex >= 0 && newIndex < items.length) {
+			const reorderedItems = reorderArray(items, index, newIndex);
+			setFormData({
+				...formData,
+				[type]: reorderedItems,
+			});
+		}
+	};
+
 	return (
 		<form onSubmit={handleSubmit} className="add-recipe-form">
 			<h2>Ajouter une nouvelle recette</h2>
@@ -126,12 +152,17 @@ function AddRecipe() {
 					{formData.tags.map((tagg, index) => (
 						<li key={index} className="addrecipe__tag-item">
 							{tagg}{" "}
-							<button
-								type="button"
-								onClick={() => handleRemoveItem("tags", index)}
-							>
-								x
-							</button>
+							<div className="addrecipe__button-group">
+								<button type="button" onClick={() => changeOrder("tags", index, "UP")}>
+									⬆️
+								</button>
+								<button type="button" onClick={() => changeOrder("tags", index, "DOWN")}>
+									⬇️
+								</button>
+								<button type="button" onClick={() => handleRemoveItem("tags", index)}>
+									🗑️
+								</button>
+							</div>
 						</li>
 					))}
 				</div>
@@ -162,14 +193,17 @@ function AddRecipe() {
 					{formData.ingredients.map((ing, index) => (
 						<li key={index} className="addrecipe__ingredient-item">
 							{ing}{" "}
-							<button
-								type="button"
-								onClick={() =>
-									handleRemoveItem("ingredients", index)
-								}
-							>
-								x
-							</button>
+							<div className="addrecipe__button-group">
+								<button type="button" onClick={() => changeOrder("ingredients", index, "UP")}>
+									⬆️
+								</button>
+								<button type="button" onClick={() => changeOrder("ingredients", index, "DOWN")}>
+									⬇️
+								</button>
+								<button type="button" onClick={() => handleRemoveItem("ingredients", index)}>
+									🗑️
+								</button>
+							</div>
 						</li>
 					))}
 				</div>
@@ -187,12 +221,17 @@ function AddRecipe() {
 					{formData.steps.map((step, index) => (
 						<li key={index} className="addrecipe__step-item">
 							{step}{" "}
-							<button
-								type="button"
-								onClick={() => handleRemoveItem("steps", index)}
-							>
-								x
-							</button>
+							<div className="addrecipe__button-group">
+								<button type="button" onClick={() => changeOrder("steps", index, "UP")}>
+									⬆️
+								</button>
+								<button type="button" onClick={() => changeOrder("steps", index, "DOWN")}>
+									⬇️
+								</button>
+								<button type="button" onClick={() => handleRemoveItem("steps", index)}>
+									🗑️
+								</button>
+							</div>
 						</li>
 					))}
 				</div>

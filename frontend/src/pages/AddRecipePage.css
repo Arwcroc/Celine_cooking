@@ -33,25 +33,30 @@
 .addrecipe__ingredient-item,
 .addrecipe__step-item,
 .addrecipe__tag-item {
-	background-color: #fff;
-	padding: 10px;
-	margin-bottom: 5px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	text-align: left;
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: left;
 }
 
 .addrecipe__ingredient-item button,
 .addrecipe__step-item button,
 .addrecipe__tag-item button {
-	background-color: #ff5f5f;
-	color: white;
-	border: none;
-	border-radius: 50%;
-	cursor: pointer;
+    background: none; /* Suppression du fond */
+    border: none; /* Suppression de la bordure */
+    cursor: pointer;
+    padding: 5px;
+    margin-left: 10px; /* Espacement entre les boutons */
+}
+
+.addrecipe__button-group {
+    display: flex;
+    justify-content: flex-end; /* Aligne les boutons à droite */
 }
 
 .addrecipe__submit-btn {

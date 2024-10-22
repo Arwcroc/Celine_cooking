@@ -31,13 +31,6 @@
 	color: #333;
 }
 
-.recipe-card__time,
-.recipe-card__difficulty {
-	font-size: 14px;
-	margin: 5px 0;
-	color: #666;
-}
-
 .tags {
 	display: flex;
 	flex-wrap: wrap;

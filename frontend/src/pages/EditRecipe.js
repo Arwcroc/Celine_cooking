@@ -113,6 +113,32 @@ function EditRecipe() {
 		}
 	};
 
+	const reorderArray = (array, oldIndex, newIndex) => {
+		const movedItem = array[oldIndex];
+		const remainingItems = array.filter((_, index) => index !== oldIndex);
+
+		const reorderedItems = [
+			...remainingItems.slice(0, newIndex),
+			movedItem,
+			...remainingItems.slice(newIndex),
+		];
+
+		return reorderedItems;
+	};
+
+	const changeOrder = (type, index, direction) => {
+		const items = formData[type];
+		const newIndex = direction === "UP" ? index - 1 : index + 1;
+
+		if (newIndex >= 0 && newIndex < items.length) {
+			const reorderedItems = reorderArray(items, index, newIndex);
+			setFormData({
+				...formData,
+				[type]: reorderedItems,
+			});
+		}
+	};
+
 	return (
 		<form onSubmit={handleSubmit} className="edit-recipe-form">
 			<h2>Modifier la recette</h2>
@@ -163,12 +189,17 @@ function EditRecipe() {
 									handleItemChange("tags", index, e)
 								}
 							/>
-							<button
-								type="button"
-								onClick={() => handleRemoveItem("tags", index)}
-							>
-								x
-							</button>
+							<div className="addrecipe__button-group">
+								<button type="button" onClick={() => changeOrder("tags", index, "UP")}>
+									⬆️
+								</button>
+								<button type="button" onClick={() => changeOrder("tags", index, "DOWN")}>
+									⬇️
+								</button>
+								<button type="button" onClick={() => handleRemoveItem("tags", index)}>
+									🗑️
+								</button>
+							</div>
 						</div>
 					))}
 				</div>
@@ -206,14 +237,17 @@ function EditRecipe() {
 								}
 								required
 							/>
-							<button
-								type="button"
-								onClick={() =>
-									handleRemoveItem("ingredients", index)
-								}
-							>
-								x
-							</button>
+							<div className="addrecipe__button-group">
+								<button type="button" onClick={() => changeOrder("ingredients", index, "UP")}>
+									⬆️
+								</button>
+								<button type="button" onClick={() => changeOrder("ingredients", index, "DOWN")}>
+									⬇️
+								</button>
+								<button type="button" onClick={() => handleRemoveItem("ingredients", index)}>
+									🗑️
+								</button>
+							</div>
 						</div>
 					))}
 				</div>
@@ -239,12 +273,17 @@ function EditRecipe() {
 								}
 								required
 							/>
-							<button
-								type="button"
-								onClick={() => handleRemoveItem("steps", index)}
-							>
-								x
-							</button>
+							<div className="addrecipe__button-group">
+								<button type="button" onClick={() => changeOrder("steps", index, "UP")}>
+									⬆️
+								</button>
+								<button type="button" onClick={() => changeOrder("steps", index, "DOWN")}>
+									⬇️
+								</button>
+								<button type="button" onClick={() => handleRemoveItem("steps", index)}>
+									🗑️
+								</button>
+							</div>
 						</div>
 					))}
 				</div>

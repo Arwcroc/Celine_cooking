@@ -20,7 +20,6 @@ function Homepage() {
 				console.error("Error fetching recipes:", error);
 			}
 		};
-
 		fetchRecipes();
 	}, []);
 

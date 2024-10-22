@@ -1,4 +1,4 @@
-.header {
+/* .header {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -36,4 +36,126 @@
 	font-size: 13px;
 	border: none;
 	border-radius: 5px;
+}
+ */
+ .header {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 15px 30px;
+	background-color: #d5ddd5;
+	color: white;
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+	flex-wrap: wrap;
+}
+
+.header__logo-image {
+	height: 70px;
+	width: auto;
+	transition: transform 0.3s ease;
+}
+
+.header__logo-image:hover {
+	transform: scale(1.05);
+}
+
+.header__nav ul {
+	list-style-type: none;
+	display: flex;
+	gap: 30px;
+	margin: 0;
+	padding: 0;
+}
+
+.header__nav a {
+	color: rgb(0, 0, 0);
+	text-decoration: none;
+	font-size: 14px;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+.header__nav a:hover {
+	text-decoration: underline;
+}
+
+.header__nav a::after {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 2px;
+	bottom: -5px;
+	left: 0;
+	background-color: #ffcc80;
+	transform: scaleX(0);
+	transform-origin: right;
+	transition: transform 0.3s ease;
+}
+
+.header__nav a:hover::after {
+	transform: scaleX(1);
+	transform-origin: left;
+}
+
+.header__nav_logout {
+		bottom: 10px;
+		padding: 10px 20px;
+		background-color: #ff7043;
+		color: #fff;
+		border-radius: 20px;
+		border: none;
+		font-size: 14px;
+		transition: background-color 0.3s;
+	}
+	
+	.header__nav_logout:hover {
+		background-color: #e05d39;
+	}
+
+.header__search {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	margin-left: 20px;
+	margin-right: 10px;
+}
+
+.header__search input {
+	width: 100%;
+	max-width: 300px;
+	padding: 8px 12px;
+	font-size: 14px;
+	border: none;
+	border-radius: 20px;
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+	transition: box-shadow 0.3s ease;
+}
+
+.header__search input:focus {
+	box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+	outline: none;
+}
+
+/* Media query pour les petits écrans */
+@media (max-width: 400px) {
+	.header {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.header__logo {
+		margin-bottom: 10px;
+	}
+
+	.header__nav {
+		margin-bottom: 10px;
+	}
+
+	.header__search {
+		width: 80%;
+		margin-bottom: 20px; /* Espace entre la recherche et le reste */
+		justify-content: center;
+	}
 }

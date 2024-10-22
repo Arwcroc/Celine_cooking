@@ -19,7 +19,7 @@
 }
 
 .form-group input {
-	width: 65%;
+	width: 90%;
 	padding: 10px;
 	border-radius: 5px;
 	margin-right: 10px;
@@ -42,21 +42,30 @@
 .edit-recipe__ingredient-item,
 .edit-recipe__step-item,
 .edit-recipe__tag-item {
-	padding: 5px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border-radius: 5px;
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: left;
 }
 
 .edit-recipe__ingredient-item button,
 .edit-recipe__step-item button,
 .edit-recipe__tag-item button {
-	background-color: #ff5f5f;
-	color: white;
-	border: none;
-	border-radius: 50%;
-	cursor: pointer;
+    background: none; /* Suppression du fond */
+    border: none; /* Suppression de la bordure */
+    cursor: pointer;
+    padding: 5px;
+    margin-left: 10px; /* Espacement entre les boutons */
+}
+
+.edit-recipe__button-group {
+    display: flex;
+    justify-content: flex-end; /* Aligne les boutons à droite */
 }
 
 .edit-recipe__add-button {
