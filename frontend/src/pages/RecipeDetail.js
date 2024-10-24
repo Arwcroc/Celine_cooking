@@ -102,7 +102,7 @@ function RecipeDetail(isAdmin) {
 						</span>
 					))}
 			</div>
-			<div>
+			<div className="recipe-serving">
 				<label>Nombre de parts : {servings}</label>
 				{/* <input type="number" value={servings} onChange={handleServingsChange} /> */}
 			</div>
