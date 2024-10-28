@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Login.css";
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
 const Login = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");

@@ -5,6 +5,8 @@ import axios from "axios";
 import logo from "../assets/images/Sans titre 2.jpeg";
 import "./RecipeDetail.css";
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
 function RecipeDetail(isAdmin) {
 	const { id } = useParams();
 	const navigate = useNavigate();

@@ -2,6 +2,8 @@ import React from "react";
 import "./RecipeCard.css";
 import logo from "../../assets/images/Sans titre 2.jpeg";
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
 function RecipeCard(props) {
 	const { recipe } = props;
 

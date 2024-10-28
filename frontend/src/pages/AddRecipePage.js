@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./AddRecipePage.css";
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
 function AddRecipe() {
 	const [formData, setFormData] = useState({
 		title: "",

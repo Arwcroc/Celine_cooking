@@ -4,6 +4,8 @@ import RecipeCard from "../components/RecipeCard/RecipeCard";
 import Header from "../components/Header/Header";
 import "./HomePage.css";
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
 function Homepage() {
 	const [recipes, setRecipes] = useState([]);
 	const [filteredRecipes, setFilteredRecipes] = useState([]);
@@ -11,9 +13,7 @@ function Homepage() {
 	useEffect(() => {
 		const fetchRecipes = async () => {
 			try {
-				const response = await axios.get(
-					`${BACKEND_URL}/api/recipes`
-				);
+				const response = await axios.get(`${BACKEND_URL}/api/recipes`);
 				setRecipes(response.data);
 				setFilteredRecipes(response.data);
 			} catch (error) {
