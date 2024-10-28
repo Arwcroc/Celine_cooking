@@ -22,7 +22,7 @@ function EditRecipe() {
 		const fetchRecipe = async () => {
 			try {
 				const response = await axios.get(
-					`http://localhost:5001/api/recipes/${id}`
+					`${BACKEND_URL}/api/recipes/${id}`
 				);
 				const recipe = response.data;
 
@@ -169,7 +169,7 @@ function EditRecipe() {
 				{formData.imagePreview && (
 					<div>
 						<img
-							src={`http://localhost:5001/uploads/${formData.imagePreview}`}
+							src={`${BACKEND_URL}/uploads/${formData.imagePreview}`}
 							alt="RecipeImage"
 							style={{ width: "200px" }}
 						/>

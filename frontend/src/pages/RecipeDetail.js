@@ -42,7 +42,7 @@ function RecipeDetail(isAdmin) {
 		if (confirmDelete) {
 			try {
 				await axios.delete(
-					`http://localhost:5001/api/recipes/${recipe.id}`
+					`${BACKEND_URL}/api/recipes/${recipe.id}`
 				);
 				alert("Recipe deleted successfully");
 				navigate("/");
@@ -81,7 +81,7 @@ function RecipeDetail(isAdmin) {
 				<img
 					src={
 						recipe.image
-							? `http://localhost:5001/uploads/${recipe.image}`
+							? `${BACKEND_URL}/uploads/${recipe.image}`
 							: logo
 					}
 					alt={recipe.title}
