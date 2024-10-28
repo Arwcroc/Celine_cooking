@@ -3,8 +3,7 @@ import axios from "axios";
 import RecipeCard from "../components/RecipeCard/RecipeCard";
 import Header from "../components/Header/Header";
 import "./HomePage.css";
-
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+import { BACKEND_URL } from '../config.js'
 
 function Homepage() {
 	const [recipes, setRecipes] = useState([]);

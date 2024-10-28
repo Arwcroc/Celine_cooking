@@ -3,8 +3,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./AddRecipePage.css";
+import { BACKEND_URL } from '../config.js'
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 function AddRecipe() {
 	const [formData, setFormData] = useState({

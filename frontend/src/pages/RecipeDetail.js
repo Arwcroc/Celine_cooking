@@ -4,8 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import logo from "../assets/images/Sans titre 2.jpeg";
 import "./RecipeDetail.css";
-
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+import { BACKEND_URL } from '../config.js'
 
 function RecipeDetail(isAdmin) {
 	const { id } = useParams();
