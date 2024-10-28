@@ -96,7 +96,7 @@ function EditRecipe() {
 
 		try {
 			const response = await axios.put(
-				`http://localhost:5001/api/recipes/${id}`,
+				`${BACKEND_URL}/api/recipes/${id}`,
 				data,
 				{
 					headers: {

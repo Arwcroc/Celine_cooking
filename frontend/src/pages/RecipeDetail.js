@@ -23,7 +23,7 @@ function RecipeDetail(isAdmin) {
 		const fetchRecipe = async () => {
 			try {
 				const response = await axios.get(
-					`http://localhost:5001/api/recipes/${id}`
+					`${BACKEND_URL}/api/recipes/${id}`
 				);
 				setRecipe(response.data);
 				setServings(response.data.servings);

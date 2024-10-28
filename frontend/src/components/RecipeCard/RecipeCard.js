@@ -10,7 +10,7 @@ function RecipeCard(props) {
 			<img
 				src={
 					recipe.image
-						? `http://localhost:5001/uploads/${recipe.image}`
+						? `${BACKEND_URL}/uploads/${recipe.image}`
 						: logo
 				}
 				alt={recipe.title}

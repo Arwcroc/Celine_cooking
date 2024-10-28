@@ -12,7 +12,7 @@ function Homepage() {
 		const fetchRecipes = async () => {
 			try {
 				const response = await axios.get(
-					"http://localhost:5001/api/recipes"
+					`${BACKEND_URL}/api/recipes`
 				);
 				setRecipes(response.data);
 				setFilteredRecipes(response.data);

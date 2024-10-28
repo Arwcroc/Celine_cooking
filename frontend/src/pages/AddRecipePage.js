@@ -66,7 +66,7 @@ function AddRecipe() {
 
 		try {
 			const response = await axios.post(
-				"http://localhost:5001/api/recipes",
+				`${BACKEND_URL}/api/recipes`,
 				data,
 				{
 					headers: {
