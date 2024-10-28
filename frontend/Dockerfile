@@ -13,6 +13,9 @@ FROM joseluisq/static-web-server:2 as production
 ENV SERVER_ROOT=/app
 
 COPY --from=builder /app/build /app
+WORKDIR /app
 
 EXPOSE 80
+
+CMD ["--page-fallback", "index.html"] 
 

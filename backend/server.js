@@ -27,8 +27,8 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use('/api/recipes', recipeRoutes);
-app.use('/auth', authRoutes);
-app.use('/uploads', express.static('uploads'));
+app.use('/api/auth', authRoutes);
+app.use('/api/uploads', express.static('uploads'));
 
 const db = mysql.createConnection({
     host: process.env.DB_HOST,
