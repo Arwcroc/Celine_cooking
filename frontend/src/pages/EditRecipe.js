@@ -170,7 +170,7 @@ function EditRecipe() {
 				{formData.imagePreview && (
 					<div>
 						<img
-							src={`${BACKEND_URL}/uploads/${formData.imagePreview}`}
+							src={`${BACKEND_URL}/api/uploads/${formData.imagePreview}`}
 							alt="RecipeImage"
 							style={{ width: "200px" }}
 						/>

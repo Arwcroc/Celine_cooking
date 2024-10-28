@@ -82,7 +82,7 @@ function RecipeDetail(isAdmin) {
 				<img
 					src={
 						recipe.image
-							? `${BACKEND_URL}/uploads/${recipe.image}`
+							? `${BACKEND_URL}/api/uploads/${recipe.image}`
 							: logo
 					}
 					alt={recipe.title}
