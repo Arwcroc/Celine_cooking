@@ -32,7 +32,7 @@ const createDatabaseAndTables = async () => {
 				steps JSON NOT NULL,
 				diet VARCHAR(255),
 				tags JSON
-			)
+			);
 		`;
 
 		db.query(createTableQuery, (err) => {

@@ -6,7 +6,7 @@ import logo from "../assets/images/Sans titre 2.jpeg";
 import "./RecipeDetail.css";
 import { BACKEND_URL } from '../config.js'
 
-function RecipeDetail(isAdmin) {
+function RecipeDetail() {
 	const { id } = useParams();
 	const navigate = useNavigate();
 	const [recipe, setRecipe] = useState(null);
