@@ -51,10 +51,15 @@
 	padding: 10px 20px;
 	background-color: #ff7043;
 	color: #fff;
+	cursor: pointer;
 	border-radius: 20px;
 	border: none;
 	font-size: 14px;
 	transition: background-color 0.3s;
+}
+
+.header__nav_logout:hover {
+	background-color: #e05d39;
 }
 
 .header__search {
