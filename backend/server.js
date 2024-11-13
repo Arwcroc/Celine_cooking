@@ -40,8 +40,16 @@ const db = mysql.createConnection({
 db.connect((err) => {
     if (err) {
         console.error('Error connecting to MySQL:', err);
-        return;
+        process.exit(1)
     }
+    setInterval(() => {
+        db.ping(err => {
+            if (err) {
+                console.error('Error connecting to MySQL:', err);
+                process.exit(1)
+            }
+        })
+    }, 1000)
     console.log('Connected to MySQL database');
 });
 
