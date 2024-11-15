@@ -1,15 +1,15 @@
 const express = require("express");
-const db = require("../config/db");
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
+const makeQuery = require("../utils/db");
 
 const router = express.Router();
 
 router.get("/", (req, res) => {
 	const sql = "SELECT * FROM recipes";
 
-	db.query(sql, (err, results) => {
+	makeQuery(sql, (err, results) => {
 		if (err) {
 			console.error(err);
 			res.status(500).json({ message: err.message });
@@ -43,7 +43,7 @@ router.post("/", upload.single("image"), (req, res) => {
 
 	const query =
 		"INSERT INTO recipes (title, image, servings, ingredients, steps, diet, tags) VALUES (?, ?, ?, ?, ?, ?, ?)";
-	db.query(
+	makeQuery(
 		query,
 		[
 			title,
@@ -69,7 +69,7 @@ router.post("/", upload.single("image"), (req, res) => {
 
 const deleteUnusedImages = () => {
 	const query = "SELECT image FROM recipes";
-	db.query(query, (err, results) => {
+	makeQuery(query, (err, results) => {
 		if (err) {
 			console.error(err);
 			return;
@@ -95,7 +95,7 @@ router.put("/:id", upload.single("image"), (req, res) => {
 
 	const selectImageSql = "SELECT image FROM recipes WHERE id = ?";
 
-	db.query(selectImageSql, [recipeId], (err, results) => {
+	makeQuery(selectImageSql, [recipeId], (err, results) => {
 		if (err) {
 			console.error(err);
 			return res
@@ -107,7 +107,7 @@ router.put("/:id", upload.single("image"), (req, res) => {
 
 		const sql =
 			"UPDATE recipes SET title = ?, image = ?, ingredients = ?, steps = ?, servings = ?, diet = ?, tags = ? WHERE id = ?";
-		db.query(
+		makeQuery(
 			sql,
 			[title, image, ingredients, steps, servings, diet, tags, recipeId],
 			(err, result) => {
@@ -128,7 +128,7 @@ router.delete("/:id", (req, res) => {
 	const recipeId = req.params.id;
 
 	const sql = "DELETE FROM recipes WHERE id = ?";
-	db.query(sql, [recipeId], (err, result) => {
+	makeQuery(sql, [recipeId], (err, result) => {
 		if (err) {
 			console.error(err);
 			return res.status(500).json({ error: "Failed to delete recipe" });
@@ -141,7 +141,7 @@ router.get("/:id", (req, res) => {
 	const recipeId = req.params.id;
 	const query = "SELECT * FROM recipes WHERE id = ?";
 
-	db.query(query, [recipeId], (err, result) => {
+	makeQuery(query, [recipeId], (err, result) => {
 		if (err) {
 			console.error("Error fetching recipe:", err);
 			return res.status(500).send("Error fetching recipe");
