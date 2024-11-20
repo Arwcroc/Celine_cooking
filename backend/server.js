@@ -5,6 +5,7 @@ const path = require('path');
 const recipeRoutes = require('./routes/recipeRoutes');
 const authRoutes = require('./routes/auth');
 const makeQuery = require("./utils/db");
+
 require('dotenv').config();
 
 const app = express();
@@ -33,7 +34,6 @@ app.use('/api/uploads', express.static('uploads'));
 app.post('/upload', upload.single('image'), (req, res) => {
     const image = req.file.filename;
 
-    // Enregistrer le chemin de l'image dans la base de données
     const sql = 'INSERT INTO images (path) VALUES (?)';
     makeQuery(sql, [image], (err, result) => {
         if (err) throw err;

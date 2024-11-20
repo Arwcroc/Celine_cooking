@@ -9,7 +9,8 @@ const router = express.Router();
 router.get("/", (req, res) => {
 	const sql = "SELECT * FROM recipes";
 
-	makeQuery(sql, (err, results) => {
+	// makeQuery(sql, (err, results) => {
+	makeQuery(sql, [], (err, results) => {
 		if (err) {
 			console.error(err);
 			res.status(500).json({ message: err.message });
@@ -69,7 +70,8 @@ router.post("/", upload.single("image"), (req, res) => {
 
 const deleteUnusedImages = () => {
 	const query = "SELECT image FROM recipes";
-	makeQuery(query, (err, results) => {
+	// makeQuery(query, (err, results) => {
+	makeQuery(sql, [], (err, results) => {
 		if (err) {
 			console.error(err);
 			return;
