@@ -2,22 +2,34 @@ const express = require("express");
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
-const makeQuery = require("../utils/db");
+const db = require("../utils/db");
 
+const makeQuery = db.makeQuery;
+const selectQuery = db.selectQuery;
 const router = express.Router();
 
 router.get("/", (req, res) => {
 	const sql = "SELECT * FROM recipes";
 
-	// makeQuery(sql, (err, results) => {
-	makeQuery(sql, [], (err, results) => {
+	selectQuery(sql, (err, rows) => {
 		if (err) {
 			console.error(err);
 			res.status(500).json({ message: err.message });
 			return;
 		}
-		res.json(results);
-	});
+		const result = rows.map(row => {
+			const tags = JSON.parse(row.tags)
+			const steps = JSON.parse(row.steps)
+			const ingredients = JSON.parse(row.ingredients)
+			return {
+				...row,
+				tags:tags,
+				steps:steps,
+				ingredients:ingredients,
+			};
+		})
+		res.json(result);
+	})
 });
 
 const storage = multer.diskStorage({
