@@ -4,14 +4,14 @@ const path = require("path");
 const fs = require("fs");
 const db = require("../utils/db");
 
-const makeQuery = db.makeQuery;
+// const makeQuery = db.makeQuery;
 const selectQuery = db.selectQuery;
 const router = express.Router();
 
 router.get("/", (req, res) => {
 	const sql = "SELECT * FROM recipes";
 
-	selectQuery(sql, (err, rows) => {
+	selectQuery(sql, [], (err, rows) => {
 		if (err) {
 			console.error(err);
 			res.status(500).json({ message: err.message });
@@ -56,7 +56,7 @@ router.post("/", upload.single("image"), (req, res) => {
 
 	const query =
 		"INSERT INTO recipes (title, image, servings, ingredients, steps, diet, tags) VALUES (?, ?, ?, ?, ?, ?, ?)";
-	makeQuery(
+	selectQuery(
 		query,
 		[
 			title,
@@ -81,9 +81,9 @@ router.post("/", upload.single("image"), (req, res) => {
 });
 
 const deleteUnusedImages = () => {
-	const query = "SELECT image FROM recipes";
+	const sql = "SELECT image FROM recipes";
 	// makeQuery(query, (err, results) => {
-	makeQuery(sql, [], (err, results) => {
+	selectQuery(sql, [], (err, results) => {
 		if (err) {
 			console.error(err);
 			return;
@@ -109,7 +109,7 @@ router.put("/:id", upload.single("image"), (req, res) => {
 
 	const selectImageSql = "SELECT image FROM recipes WHERE id = ?";
 
-	makeQuery(selectImageSql, [recipeId], (err, results) => {
+	selectQuery(selectImageSql, [recipeId], (err, results) => {
 		if (err) {
 			console.error(err);
 			return res
@@ -121,7 +121,7 @@ router.put("/:id", upload.single("image"), (req, res) => {
 
 		const sql =
 			"UPDATE recipes SET title = ?, image = ?, ingredients = ?, steps = ?, servings = ?, diet = ?, tags = ? WHERE id = ?";
-		makeQuery(
+		selectQuery(
 			sql,
 			[title, image, ingredients, steps, servings, diet, tags, recipeId],
 			(err, result) => {
@@ -140,9 +140,9 @@ router.put("/:id", upload.single("image"), (req, res) => {
 
 router.delete("/:id", (req, res) => {
 	const recipeId = req.params.id;
-
 	const sql = "DELETE FROM recipes WHERE id = ?";
-	makeQuery(sql, [recipeId], (err, result) => {
+
+	selectQuery(sql, [recipeId], (err, result) => {
 		if (err) {
 			console.error(err);
 			return res.status(500).json({ error: "Failed to delete recipe" });
@@ -155,15 +155,25 @@ router.get("/:id", (req, res) => {
 	const recipeId = req.params.id;
 	const query = "SELECT * FROM recipes WHERE id = ?";
 
-	makeQuery(query, [recipeId], (err, result) => {
+	selectQuery(query, [recipeId], (err, rows) => {
 		if (err) {
-			console.error("Error fetching recipe:", err);
-			return res.status(500).send("Error fetching recipe");
+			console.error(err);
+			res.status(500).json({ message: err.message });
+			return;
 		}
-
-		const recipe = result[0];
-		res.json(recipe);
-	});
+		const result = rows.map(row => {
+			const tags = JSON.parse(row.tags)
+			const steps = JSON.parse(row.steps)
+			const ingredients = JSON.parse(row.ingredients)
+			return {
+				...row,
+				tags:tags,
+				steps:steps,
+				ingredients:ingredients,
+			};
+		})
+		res.json(result[0]);
+	})
 });
 
 module.exports = router;

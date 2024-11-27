@@ -79,6 +79,7 @@ function RecipeDetail() {
 				{"<<"}
 			</button>
 			<div className="recipe-header">
+				
 				<img
 					src={
 						recipe.image

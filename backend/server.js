@@ -4,7 +4,7 @@ const multer = require('multer');
 const path = require('path');
 const recipeRoutes = require('./routes/recipeRoutes');
 const authRoutes = require('./routes/auth');
-const makeQuery = require("./utils/db");
+const selectQuery = require("./utils/db");
 
 require('dotenv').config();
 
@@ -35,7 +35,7 @@ app.post('/upload', upload.single('image'), (req, res) => {
     const image = req.file.filename;
 
     const sql = 'INSERT INTO images (path) VALUES (?)';
-    makeQuery(sql, [image], (err, result) => {
+    selectQuery(sql, [image], (err, result) => {
         if (err) throw err;
         res.send('Image uploadée et enregistrée dans la base de données');
     });

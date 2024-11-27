@@ -13,7 +13,6 @@ function Homepage() {
 		const fetchRecipes = async () => {
 			try {
 				const response = await axios.get(`${BACKEND_URL}/api/recipes`);
-				console.log("Fetched recipes:", response.data);
 				setRecipes(response.data);
 				setFilteredRecipes(response.data);
 			} catch (error) {

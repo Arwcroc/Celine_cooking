@@ -15,8 +15,8 @@ const makeQuery = (query) => {
     return db.run(query);
 };
 
-const selectQuery = (query, callback) => {
-	db.all(query, callback);
+const selectQuery = (query, params, callback) => {
+	db.all(query, params, callback);
 };
 
 const createDatabaseAndTables = () => {
