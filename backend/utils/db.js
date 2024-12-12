@@ -1,5 +1,6 @@
 const sqlite3 = require("sqlite3").verbose();
 const path = require("path");
+require('dotenv').config();
 
 const dbPath = path.resolve(process.env.DATABASE_DIR, process.env.DATABASE_FILENAME);
 
