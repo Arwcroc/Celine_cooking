@@ -6,6 +6,7 @@
 	background-color: #fff;
 	transition: box-shadow 0.3s;
 	width: 300px;
+	height: 360px;
 }
 
 .recipe-card:hover {

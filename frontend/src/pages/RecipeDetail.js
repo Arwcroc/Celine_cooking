@@ -54,21 +54,6 @@ function RecipeDetail() {
 		}
 	};
 
-	// const handleServingsChange = (e) => {
-	//     setServings(e.target.value);
-	// };
-
-	// const calculateIngredients = (ingredient) => {
-	// 	const words = ingredient.split(' ');
-	// 	const amount = parseFloat(words[0]);
-	// 	if (isNaN(amount)) {
-	// 		return ingredient;
-	// 	} else {
-	// 		const adjustedAmount = (amount * servings) / recipe.servings;
-	// 		return `${adjustedAmount} ${words.slice(1).join(' ')}`;
-	// 	}
-	// };
-
 	if (!recipe) {
 		return <div>Loading...</div>;
 	}
@@ -106,15 +91,16 @@ function RecipeDetail() {
 			</div>
 			<div className="recipe-serving">
 				<label>Nombre de parts : {servings}</label>
-				{/* <input type="number" value={servings} onChange={handleServingsChange} /> */}
 			</div>
 			<div className="recipe-body">
 				<div className="ingredients">
 					<h2>Ingrédients</h2>
+					<ul>
 					{recipe.ingredients &&
 						recipe.ingredients.map((ingredient, index) => (
 							<li key={index}>{ingredient}</li>
 						))}
+						</ul>
 				</div>
 				<div className="steps">
 					<h2>Étapes</h2>

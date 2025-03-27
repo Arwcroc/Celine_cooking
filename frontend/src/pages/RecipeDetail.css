@@ -52,14 +52,14 @@
 	margin-top: 20px;
 }
 
-.ingredients,
-.steps {
+.ingredients, .steps {
 	flex: 1;
 }
 
-.ingredients ul,
-.steps ol {
-	padding-left: 20px;
+.ingredients ul, .steps ol {
+	/* padding-left: 20px; */
+	text-align: left;
+	line-height: 1.5;
 }
 
 .btn-edit,
@@ -90,7 +90,16 @@
 }
 
 @media (max-width: 768px) {
+	.recipe-detail {
+		text-align: left;
+	}
 	.recipe-body {
 		flex-direction: column;
 	}
+	.ingredients ul, .steps ol {
+		text-align: left;
+		line-height: 1.5;
+		align-items: center;
+	}
+
 }
