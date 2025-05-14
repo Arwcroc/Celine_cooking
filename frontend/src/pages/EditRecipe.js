@@ -6,19 +6,19 @@ import "./EditRecipe.css";
 import { BACKEND_URL } from '../config.js'
 
 function EditRecipe() {
-	const { id } = useParams();
-	const navigate = useNavigate();
-	const [formData, setFormData] = useState({
+	const initialFormData = {
 		title: "",
 		image: null,
-		imagePreview: "",
 		ingredients: [],
 		steps: [],
-		servings: "",
+		servings: 1,
 		diet: "",
 		tags: [],
-	});
-
+	};
+	const { id } = useParams();
+	const navigate = useNavigate();
+	const [formData, setFormData] = useState(initialFormData);
+	
 	useEffect(() => {
 		const fetchRecipe = async () => {
 			try {
@@ -96,7 +96,7 @@ function EditRecipe() {
 		data.append("tags", JSON.stringify(formData.tags));
 
 		try {
-			const response = await axios.put(
+			await axios.put(
 				`${BACKEND_URL}/api/recipes/${id}`,
 				data,
 				{
@@ -105,7 +105,7 @@ function EditRecipe() {
 					},
 				}
 			);
-			setFormData(response);
+			setFormData(initialFormData);
 			alert("Recipe updated successfully");
 			navigate(`/recipes/${id}`);
 		} catch (error) {
