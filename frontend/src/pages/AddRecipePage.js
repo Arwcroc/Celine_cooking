@@ -7,7 +7,7 @@ import { BACKEND_URL } from '../config.js'
 
 
 function AddRecipe() {
-	const [formData, setFormData] = useState({
+	const initialFormData = {
 		title: "",
 		image: null,
 		ingredients: [],
@@ -15,8 +15,9 @@ function AddRecipe() {
 		serving: 1,
 		diet: "",
 		tags: [],
-	});
+	};
 
+	const [formData, setFormData] = useState(initialFormData);
 	const [ingredients, setIngredients] = useState("");
 	const [step, setStep] = useState("");
 	const [tag, setTag] = useState("");
@@ -54,6 +55,13 @@ function AddRecipe() {
 		});
 	};
 
+	const resetForm = () => {
+		setFormData(initialFormData);
+		setIngredients("");
+		setStep("");
+		setTag("");
+	}
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
@@ -67,7 +75,7 @@ function AddRecipe() {
 		data.append("tags", JSON.stringify(formData.tags));
 
 		try {
-			const response = await axios.post(
+			await axios.post(
 				`${BACKEND_URL}/api/recipes`,
 				data,
 				{
@@ -76,7 +84,7 @@ function AddRecipe() {
 					},
 				}
 			);
-			setFormData(response);
+			resetForm();
 			alert("Recipe added");
 			navigate(`/`);
 		} catch (error) {
