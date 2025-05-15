@@ -27,6 +27,9 @@ function Homepage() {
 			const titleMatch = recipe.title
 				.toLowerCase()
 				.includes(query.toLowerCase());
+			const dietMatch = recipe.diet
+				.toLowerCase()
+				.includes(query.toLowerCase());
 
 			let ingredientsMatch = false;
 			let tagsMatch = false;
@@ -58,7 +61,7 @@ function Homepage() {
 				console.error("Invalid JSON for tags:", recipe.tags);
 			}
 
-			return titleMatch || ingredientsMatch || tagsMatch;
+			return titleMatch || ingredientsMatch || tagsMatch || dietMatch;
 		});
 
 		setFilteredRecipes(filtered);
